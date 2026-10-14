@@ -20,14 +20,14 @@ export default async function Image() {
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           alignItems: "center",
           justifyContent: "center",
           background: "#0a0a0a",
           color: "#c5ff0a",
         }}
       >
-        <svg width="300" height="300" viewBox={LOGO_VIEWBOX} fill="#c5ff0a">
+        <svg width="240" height="240" viewBox={LOGO_VIEWBOX} fill="#c5ff0a">
           <g transform={LOGO_GROUP_TRANSFORM}>
             {LOGO_SHAPES.map((shape) => (
               <path key={shape.id} transform={shape.transform} d={shape.d} />
@@ -37,9 +37,9 @@ export default async function Image() {
         <div
           style={{
             display: "flex",
-            marginTop: 24,
+            marginLeft: 40,
             fontFamily: "Righteous",
-            fontSize: 150,
+            fontSize: 160,
             lineHeight: 1,
             color: "#f5f5f0",
           }}
