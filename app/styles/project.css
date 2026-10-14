@@ -394,6 +394,15 @@
   background: var(--ink);
 }
 
+.vid--vertical {
+  max-width: min(100%, 26rem);
+  margin-inline: auto;
+}
+
+.vid--vertical .vid__screen {
+  aspect-ratio: 9 / 16;
+}
+
 .vid__screen iframe,
 .vid__screen video {
   position: absolute;

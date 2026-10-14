@@ -14,7 +14,7 @@ function youtubeEmbed(src: string): string | null {
 export async function VideoPage({ video }: { video: VideoId }) {
   const t = await getTranslations(`project.${video}`);
   const tv = await getTranslations("project.video");
-  const { src } = VIDEOS[video];
+  const { src, vertical } = VIDEOS[video];
   const embed = src ? youtubeEmbed(src) : null;
   const others = (Object.keys(VIDEOS) as VideoId[]).filter((id) => id !== video);
 
@@ -29,7 +29,7 @@ export async function VideoPage({ video }: { video: VideoId }) {
 
       <div className="wrap">
         <div className="reveal">
-          <figure className="vid hud">
+          <figure className={vertical ? "vid vid--vertical hud" : "vid hud"}>
             <div className="vid__screen">
               {embed ? (
                 <iframe

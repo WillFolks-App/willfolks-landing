@@ -65,12 +65,12 @@ export type VideoId = "demo" | "pitch" | "promo";
 
 /**
  * Hackathon videos. `src` takes a YouTube link or a direct video file; while it
- * is `null` the page shows the video as "in post-production".
+ * is `null` the page shows the video as "in post-production". `vertical` frames a 9:16 cut.
  */
-export const VIDEOS: Record<VideoId, { src: string | null }> = {
+export const VIDEOS: Record<VideoId, { src: string | null; vertical?: boolean }> = {
   demo: { src: "https://pzcjuob2jc1gtrrm.public.blob.vercel-storage.com/videos/willfolks-demo-en.mp4" },
   pitch: { src: "https://pzcjuob2jc1gtrrm.public.blob.vercel-storage.com/videos/willfolks-pitch-en.mp4" },
-  promo: { src: "https://pzcjuob2jc1gtrrm.public.blob.vercel-storage.com/videos/willfolks-promo-v1.mp4" },
+  promo: { src: "https://pzcjuob2jc1gtrrm.public.blob.vercel-storage.com/videos/willfolks-promo-v1.mp4", vertical: true },
 };
 
 /** Pages that back the hackathon submission, in the order they are listed. */
