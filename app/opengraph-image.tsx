@@ -1,10 +1,18 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+import { LOGO_GROUP_TRANSFORM, LOGO_SHAPES, LOGO_VIEWBOX } from "@/lib/logo";
 
 export const alt = "WillFolks — Pon tu dinero donde están tus metas";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function Image() {
+export default async function Image() {
+  // Brand wordmark face
+  const righteous = await readFile(
+    join(process.cwd(), "public/fonts/Righteous/Righteous-Regular.ttf"),
+  );
+
   return new ImageResponse(
     (
       <div
@@ -13,25 +21,36 @@ export default function Image() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
+          alignItems: "center",
+          justifyContent: "center",
           background: "#0a0a0a",
-          color: "#f5f5f0",
-          padding: 72,
-          borderLeft: "24px solid #c5ff0a",
+          color: "#c5ff0a",
         }}
       >
-        <div style={{ display: "flex", fontSize: 40, color: "#c5ff0a", letterSpacing: 4 }}>
-          WILLFOLKS
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", fontSize: 92, fontWeight: 800, lineHeight: 1.05 }}>
-          <span>Put your money</span>
-          <span style={{ color: "#c5ff0a" }}>where your goals are.</span>
-        </div>
-        <div style={{ display: "flex", fontSize: 30, color: "#a3a39a" }}>
-          Stake USDC on your goals · Escrow on Monad
+        <svg width="300" height="300" viewBox={LOGO_VIEWBOX} fill="#c5ff0a">
+          <g transform={LOGO_GROUP_TRANSFORM}>
+            {LOGO_SHAPES.map((shape) => (
+              <path key={shape.id} transform={shape.transform} d={shape.d} />
+            ))}
+          </g>
+        </svg>
+        <div
+          style={{
+            display: "flex",
+            marginTop: 24,
+            fontFamily: "Righteous",
+            fontSize: 150,
+            lineHeight: 1,
+            color: "#f5f5f0",
+          }}
+        >
+          WillFolks
         </div>
       </div>
     ),
-    { ...size },
+    {
+      ...size,
+      fonts: [{ name: "Righteous", data: righteous, style: "normal", weight: 400 }],
+    },
   );
 }

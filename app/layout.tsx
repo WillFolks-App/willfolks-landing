@@ -63,10 +63,7 @@ const vt323 = localFont({
 
 /** Absolute origin: link previews (WhatsApp, Instagram…) need absolute image URLs. */
 function siteUrl() {
-  const host =
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    process.env.VERCEL_PROJECT_PRODUCTION_URL ??
-    "willfolks.com";
+  const host = process.env.NEXT_PUBLIC_SITE_URL ?? "willfolks.bamp.lat";
   return host.startsWith("http") ? host : `https://${host}`;
 }
 
