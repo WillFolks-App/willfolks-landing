@@ -70,7 +70,7 @@ export type VideoId = "demo" | "pitch" | "promo";
 export const VIDEOS: Record<VideoId, { src: string | null }> = {
   demo: { src: "https://pzcjuob2jc1gtrrm.public.blob.vercel-storage.com/videos/willfolks-demo-en.mp4" },
   pitch: { src: "https://pzcjuob2jc1gtrrm.public.blob.vercel-storage.com/videos/willfolks-pitch-en.mp4" },
-  promo: { src: null },
+  promo: { src: "https://pzcjuob2jc1gtrrm.public.blob.vercel-storage.com/videos/willfolks-promo-v1.mp4" },
 };
 
 /** Pages that back the hackathon submission, in the order they are listed. */
