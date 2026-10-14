@@ -61,8 +61,18 @@ const vt323 = localFont({
   weight: "400",
 });
 
+/** Absolute origin: link previews (WhatsApp, Instagram…) need absolute image URLs. */
+function siteUrl() {
+  const host =
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    process.env.VERCEL_PROJECT_PRODUCTION_URL ??
+    "willfolks.com";
+  return host.startsWith("http") ? host : `https://${host}`;
+}
+
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("meta");
+  const locale = await getLocale();
   return {
     title: {
       default: t("title"),
@@ -71,6 +81,19 @@ export async function generateMetadata(): Promise<Metadata> {
     description: t("description"),
     keywords: t.raw("keywords") as string[],
     applicationName: "WillFolks",
+    metadataBase: new URL(siteUrl()),
+    openGraph: {
+      type: "website",
+      siteName: "WillFolks",
+      title: t("title"),
+      description: t("description"),
+      locale: locale === "es" ? "es_ES" : "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+    },
   };
 }
 
